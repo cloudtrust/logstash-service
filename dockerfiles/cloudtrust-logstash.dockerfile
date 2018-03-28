@@ -23,11 +23,11 @@ WORKDIR /cloudtrust
 RUN git clone git@github.com:cloudtrust/logstash-service.git
 
 WORKDIR /cloudtrust/logstash-service
-RUN git checkout ${logstash_service_git_tag} \
+RUN git checkout ${logstash_service_git_tag} && \
     install -v -m644 -o root -g root deploy/etc/security/limits.d/* /etc/security/limits.d/ && \
     install -v -m644 -o root -g root deploy/etc/monit.d/* /etc/monit.d/ && \
     install -v -d -m755 -o root -g root /etc/systemd/system/logstash.service.d/ && \ 
-    install -v -m644 -o root -g root deploy/etc/systemd/system/logstash.service /etc/systemd/system/logstash.service & \
+    install -v -m644 -o root -g root deploy/etc/systemd/system/logstash.service /etc/systemd/system/logstash.service && \
     install -v -m644 -o root -g root deploy/etc/systemd/system/logstash.service.d/* /etc/systemd/system/logstash.service.d/
 
 ##
