@@ -16,7 +16,8 @@ enabled=1\n\
 autorefresh=1\n\
 type=rpm-md" > /etc/yum.repos.d/elasticsearch.repo
 
-RUN dnf install -y java java-1.8.0-openjdk.x86_64 logstash && \
+RUN dnf update -y && \
+    dnf install -y java java-1.8.0-openjdk.x86_64 logstash && \
     dnf clean all
 
 WORKDIR /cloudtrust
