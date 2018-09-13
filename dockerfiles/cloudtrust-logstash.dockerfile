@@ -2,6 +2,9 @@ FROM cloudtrust-baseimage:f27
 
 ARG logstash_service_git_tag
 
+ARG java8_version=1:1.8.0.181-7.b13.fc27
+ARG logstash_version=1:6.4.0-1
+
 ###
 ###  Prepare the system stuff
 ###
@@ -17,7 +20,7 @@ autorefresh=1\n\
 type=rpm-md" > /etc/yum.repos.d/elasticsearch.repo
 
 RUN dnf update -y && \
-    dnf install -y java java-1.8.0-openjdk.x86_64 logstash && \
+    dnf install -y java-1.8.0-openjdk.x86_64-$java8_version logstash-$logstash_version && \
     dnf clean all
 
 WORKDIR /cloudtrust
